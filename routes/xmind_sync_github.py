@@ -7,7 +7,7 @@ import os
 router = APIRouter()
 
 @router.post("/xmind-sync")
-async def xmind_sync(url: str = Body(...)):
+async def xmind_sync(url: dict = Body(...)):
     
     logs = []
 
