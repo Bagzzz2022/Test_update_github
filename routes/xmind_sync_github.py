@@ -3,11 +3,15 @@ from github.InputGitAuthor import InputGitAuthor
 from fastapi import APIRouter, Body
 import requests
 import os
+import json
 
 router = APIRouter()
 
 @router.post("/xmind-sync")
 async def xmind_sync(url: dict = Body(...)):
+
+    data = json.loads(url)
+    url = data.get('url')
     
     logs = []
 
@@ -17,8 +21,8 @@ async def xmind_sync(url: dict = Body(...)):
 
     log(f'[XMIND-SYNC] got url dify')
 
-    url = str(url)
-    url = url.strip()
+    # url = str(url)
+    # url = url.strip()
 
     log(url)
 
