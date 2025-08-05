@@ -18,6 +18,7 @@ async def xmind_sync(url: str = Body(...)):
     log(f'[XMIND-SYNC] got url dify')
 
     url = str(url)
+    url = url.strip()
 
     log(url)
 
