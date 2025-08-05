@@ -10,8 +10,7 @@ router = APIRouter()
 @router.post("/xmind-sync")
 async def xmind_sync(url: dict = Body(...)):
 
-    data = json.loads(url)
-    url = data.get('url')
+    url = url['url']
     
     logs = []
 
@@ -20,10 +19,6 @@ async def xmind_sync(url: dict = Body(...)):
         logs.append(msg)
 
     log(f'[XMIND-SYNC] got url dify')
-
-    # url = str(url)
-    # url = url.strip()
-
     log(url)
 
     GIT_TOKEN = os.environ.get('GITHUB_TOKEN')
