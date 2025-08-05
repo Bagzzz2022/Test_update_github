@@ -10,12 +10,19 @@ router = APIRouter()
 async def xmind_sync(url: str = Body(...)):
     print(url)
 
-    g = Github('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')
+    GIT_TOKEN = os.environ.get('GITHUB_TOKEN')
 
-    owner = 'Tiffozi-ilia'
-    repo_name = 'AImatrix'
+    g = Github(GIT_TOKEN)
+
+    # owner = 'Tiffozi-ilia'
+    # repo_name = 'AImatrix'
+    # file_path = 'matrix.xmind'
+    # branch = 'all-in'
+
+    owner = 'Bagzzz2022'
+    repo_name = 'Test_update_github'
     file_path = 'matrix.xmind'
-    branch = 'all-in'
+    branch = 'main'
 
     repo = g.get_repo(f"{owner}/{repo_name}")
     contents = repo.get_contents(file_path, ref=branch)
