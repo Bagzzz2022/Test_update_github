@@ -16,6 +16,9 @@ async def xmind_sync(url: str = Body(...)):
         logs.append(msg)
 
     log(f'[XMIND-SYNC] got url dify')
+
+    url = str(url)
+
     log(url)
 
     GIT_TOKEN = os.environ.get('GITHUB_TOKEN')
