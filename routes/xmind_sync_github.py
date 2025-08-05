@@ -8,7 +8,14 @@ router = APIRouter()
 
 @router.post("/xmind-sync")
 async def xmind_sync(url: str = Body(...)):
-    print(url)
+    
+    logs = []
+
+    def log(msg):
+        print(msg)
+        logs.append(msg)
+
+    log(f'[XMIND-SYNC] got url dify {url}')
 
     GIT_TOKEN = os.environ.get('GITHUB_TOKEN')
 
@@ -30,6 +37,8 @@ async def xmind_sync(url: str = Body(...)):
     response = requests.get(url)
     new_content = response.content
 
+    log(f'[XMIND-SYNC] got new content')
+
     # with codecs.open(file, 'rb') as f:
     #     new_content = f.read()
 
@@ -40,3 +49,5 @@ async def xmind_sync(url: str = Body(...)):
         contents.sha,
         branch=branch,
         author=InputGitAuthor("DiFyBot", "example@somemail.com"))
+    
+    log(f'[XMIND-SYNC] xmind updated')
